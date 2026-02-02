@@ -1,0 +1,499 @@
+:root {
+    --max-width: 1200px;
+    --text-light: rgb(240, 240, 240);
+    --color-primario: #3a2a52;
+    --color-secundario: #8b6ba8;
+    --color-fondo: #1a1a1a;
+    --color-acento: #00d4ff;
+    --color-precio: #ff6b6b;
+}
+
+
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+
+html, body {
+    min-height: 100vh;
+    background-color: var(--color-primario);
+    background-image: none;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--text-light);
+    scroll-behavior: smooth;
+}
+
+body {
+    transition: background-color 0.15s ease;
+    contain: layout style paint;
+}
+
+/* MODO OSCURO */
+body.modo-oscuro {
+    background-color: var(--color-fondo) !important;
+    color: var(--text-light) !important;
+}
+
+body.modo-oscuro #img-inicio:hover,
+body.modo-oscuro #boton1:hover,
+body.modo-oscuro #boton2:hover,
+body.modo-oscuro #boton3:hover,
+body.modo-oscuro #hover1:hover,
+body.modo-oscuro #hover2:hover,
+body.modo-oscuro #hover3:hover {
+    box-shadow: 0 4px 12px rgba(0,212,255,0.4);
+}
+
+/* Evitar que los :has() sobreescriban el modo oscuro */
+body.modo-oscuro:has(#ver1),
+body.modo-oscuro:has(#ver2),
+body.modo-oscuro:has(#ver3) {
+    background-color: var(--color-fondo) !important;
+}   
+
+header {
+    position: relative;
+    height: 185px;
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* Header específico para la página principal (index.html) */
+#img-header {
+    background: url(../Recursos/header-header.png);
+}
+
+#img-inicio {
+    position: absolute;
+    left: 2%;          /* Un poco más separado del borde izquierdo */
+    top: 45px;         /* (170px header - 80px botón) / 2 = 45px para centrado perfecto */
+    width: 80px; 
+    height: 80px;
+    border-radius: 100%;
+    background: url(../Recursos/inicio1.jpg) center/cover no-repeat;
+    transition: all 0.2s ease;
+    z-index: 10;
+    contain: layout style paint;
+    aspect-ratio: 1;
+    border: 2px solid var(--color-secundario); /* Opcional: le da un borde para que resalte del fondo */
+}
+#img-inicio:focus {
+    outline: 3px solid rgb(127,104,148);
+    outline-offset: 2px;
+}
+#img-inicio:hover { 
+    transform: translateX(8px); 
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3); 
+}
+/* ocultar imágenes internas en los enlaces de cabecera para que se muestre el background del <a> */
+#img-inicio img, #style-inicio { width: 100%; height: 100%; border-radius: 100%; opacity: 0; display: block; }
+#boton1 img, #boton1a img, #boton2 img, #boton2a img, #boton3 img, #boton3a img { width: 100%; height: 100%; opacity: 0; display: block; border-radius: 12px; }
+
+/* 1. Estilos generales y posición horizontal común */
+#boton1, #boton1a, #boton2, #boton2a, #boton3, #boton3a {
+    position: absolute;
+    right: 2%;         /* Pegados a la derecha */
+    width: 70px; 
+    height: 50px;      /* Ajustado para que quepan mejor los tres */
+    border-radius: 15px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: all 0.2s ease;
+    will-change: transform, box-shadow;
+    z-index: 9;
+}
+
+/* 2. Posiciones verticales individuales (uno debajo de otro) */
+#boton1, #boton1a { top: 10px; }
+#boton2, #boton2a { top: 65px; }
+#boton3, #boton3a { top: 120px; }
+
+/* 3. Imágenes por defecto */
+#boton1, #boton1a { background-image: url(https://assets.murphysmultiverse.com/uploads/2024/10/marvel-logo-design-history-and-evolution-kreafolk_50f7a4b8-dc53-495d-89bc-84c168382b61.jpg); }
+#boton2, #boton2a { background-image: url(https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/81a4e680815973.5cec6bcf6aa1a.jpg); }
+#boton3, #boton3a { background-image: url(https://i.pinimg.com/736x/dd/65/1e/dd651e59f8437c2f1e5f7ab35d813f75.jpg); }
+
+/* 4. Imágenes al pasar el ratón (Hover) */
+#boton1:hover, #boton1a:hover { background-image: url(../Recursos/marvel1.jpg); }
+#boton2:hover, #boton2a:hover { background-image: url(../Recursos/cyberpunk.webp); }
+#boton3:hover, #boton3a:hover { background-image: url(../Recursos/wednesday.jpg); }
+
+/* 5. Efectos visuales al pasar el ratón */
+#boton1:hover, #boton1a:hover,
+#boton2:hover, #boton2a:hover,
+#boton3:hover, #boton3a:hover {
+    transform: scale(1.1) translateX(-5px); /* Se hacen grandes y se mueven un poco a la izquierda */
+    box-shadow: 0 2px 12px rgba(0, 212, 255, 0.5);
+}
+
+
+header { 
+    background: rgba(36,24,44);
+    position: relative;
+}
+
+.boton-oscuro {
+    position: fixed;
+    bottom: 70px;
+    right: 20px;
+    padding: 10px 15px;
+    background-color: var(--color-secundario);
+    color: white;
+    border: 2px solid var(--color-acento);
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    z-index: 9998;
+    transition: all 0.2s ease;
+}
+
+.boton-oscuro:hover {
+    background-color: var(--color-acento);
+    color: var(--color-primario);
+    transform: scale(1.05);
+}
+
+.boton-oscuro:focus {
+    outline: 3px solid var(--color-acento);
+    outline-offset: 2px;
+}
+
+.collage { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; min-height: 260px; }
+#hover1, #hover2, #hover3 {
+    display: block;
+    width: 400px; height: 250px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    aspect-ratio: 400/250;
+}
+/* Use local Recursos images for hover tiles on the index page */
+#hover1 { background-image: url(../Recursos/cyberpunk.webp); }
+#hover1:hover { background-image: url(../Recursos/female-v-badass-3840x2160-20153.jpg); }
+
+#hover2 { background-image: url(../Recursos/marvel1.jpg); background-size: 450px; }
+#hover2:hover { background-image: url(../Recursos/marvel-logo-dark-3840x2160-22111.jpg); background-size: 500px; }
+
+#hover3 { background-image: url(../Recursos/wednesday.jpg); }
+#hover3:hover { background-image: url(../Recursos/jenna-ortega-thing-3840x2160-23922.jpg); }
+
+#hover1:hover, #hover2:hover, #hover3:hover { transform: scale(1.1); box-shadow: 0 0 5px 5px white; }
+#hover1:focus, #hover2:focus, #hover3:focus { outline: 3px solid white; outline-offset: 2px; }
+
+#caption1, .caption1 {
+    text-align: center;
+    background: radial-gradient(ellipse at bottom, rgb(127,104,148) 25%, rgb(54,40,65) 75%);
+    width: 35%;
+    min-height: 45px;
+    margin: 20px auto;
+    padding: 10px;
+    font-size: 35px;
+    color: var(--text-light);
+    font-family: 'Impact', sans-serif;
+    border-radius: 12px;
+    box-shadow: 0px 6px 18px rgba(26,19,31,0.726), 0 0 5px rgba(54,40,65,0.5);
+    text-shadow: 0 0px 4px rgba(0,0,0,0.6), 0 0 10px rgba(83,63,100,0.65), 0 0 20px rgba(54,40,65,0.45), 0px 0px 5px rgba(127,104,148,0.842);
+}
+
+#divpadre { display: grid; grid-template-columns: repeat(3,1fr); gap: 40px; padding: 40px 20px; text-align: center; color: white; } 
+#divpadre a { color: white; font-weight: 600; }
+#divpadre .btn-enlace { color: white; }
+#divpadre h2, #divpadre h5 { 
+    background: radial-gradient(ellipse at bottom, rgb(127,104,148) 25%, rgb(54,40,65) 75%); 
+    box-shadow: 0px 6px 18px rgba(26,19,31,0.726); 
+    border-radius: 12px; 
+    padding: 12px; 
+    font-size: larger; 
+    text-shadow: inherit;
+    color: #f0f0f0;
+}
+
+.btn-enlace, .btn { 
+    display: inline-block; 
+    padding: 12px 25px; 
+    margin: 8px; 
+    background: rgb(60,45,75); 
+    color: white; 
+    border: 2px solid rgb(127,104,148); 
+    border-radius: 8px; 
+    text-decoration: none; 
+    transition: 0.2s;
+    font-weight: 600;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+}
+.btn-enlace:hover, .btn:hover { 
+    background: black; 
+    box-shadow: 0 2px 8px rgba(0,212,255,0.3);
+}
+.btn-enlace:focus, .btn:focus {
+    outline: 2px solid rgb(127,104,148);
+    outline-offset: 2px;
+}
+
+.destacados { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; padding: 40px 0; contain: layout style paint; }
+.item { 
+    width: 15%; 
+    min-width: 220px; 
+    background: rgb(62,50,71); 
+    padding: 15px; 
+    text-align: center; 
+    border-radius: 12px; 
+    color: white; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: space-between;
+    contain: layout style paint;
+}
+
+.item img { 
+    width: 200px; 
+    height: 265px; 
+    object-fit: cover; 
+    border-radius: 12px; 
+    display: block;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    transition: box-shadow 0.2s ease;
+}
+
+.item img:hover {
+    box-shadow: 0 4px 10px rgba(0,212,255,0.3);
+    aspect-ratio: 200/265;
+}
+
+.precio { color: red; font-weight: bold; }
+
+#bannerprincipal { margin: 0; padding: 0; }
+#bannerprincipal img {
+    width: 95%;
+    height: auto;
+    aspect-ratio: 16/6;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    display: block;
+    margin: 0 auto;
+    object-fit: cover;
+}
+
+#contenedorpadre {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    content-visibility: auto;
+}
+#contenedorpadre > div { border: 2px solid black; border-radius: 10px; padding: 10px; background: white; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 520px; color: black; }
+#contenedorpadre > div h5 { color: black; }
+#contenedorpadre > div p { color: black; }
+#contenedorpadre img { width: auto; height: auto; max-width: 100%; max-height: 400px; object-fit: contain; }
+.figcenter { padding: 8px; color: white; font-size: small; border: 2px solid; text-align: center; }
+
+body:has(#ver2) { background-color: rgb(0,78,78) !important; }
+/* Cyberpunk header: use project banner for a stronger visual */
+body:has(#ver2) header { background: url(../Recursos/female-v-badass-3840x2160-20153.jpg) center/cover no-repeat; }
+body:has(#ver2) #bannerprincipal img { content: url(../Recursos/bannercyberpunk.jpg); } 
+body:has(#ver2) .figcenter { border-color: rgb(0,158,179); background: linear-gradient(to right, rgb(0,141,110), rgb(0,48,41)); }
+
+body:has(#ver1) { background-color: rgb(26,0,0) !important; }
+/* use existing banner images from Recursos as header backgrounds */
+body:has(#ver1) header { background: url(../Recursos/header-marvel.png) center/cover no-repeat; }
+body:has(#ver1) #bannerprincipal img { content: url(../Recursos/marvel-superheroes-3840x2160-24445.jpg); } 
+body:has(#ver1) .figcenter { border-color: rgb(109,0,0); background: linear-gradient(to right, rgb(134,0,0), rgb(99,64,0)); }
+
+body:has(#ver3) { background-color: #2a1b55 !important; }
+body:has(#ver3) header { background: url(../Recursos/header-miercoles.jpg) center/cover no-repeat; }
+body:has(#ver3) #bannerprincipal img { content: url(../Recursos/jenna-ortega-as-3840x2160-9302.jpg); } 
+body:has(#ver3) .figcenter { border-color: rgb(45,0,128); background: linear-gradient(to right, rgb(104,0,202), rgb(77,0,107)); }
+
+.web1 {
+    --wiki-edge: rgb(15,15,15);
+    --wiki-center: rgb(30,20,45);
+    --wiki-accent: rgb(170,100,255);
+    --wiki-text: rgb(255,230,255);
+}
+
+.web1 body {
+    padding: 40px 20px;
+    background: radial-gradient(ellipse at center, var(--wiki-center) 0%, rgba(30,20,45,0.85) 12%, var(--wiki-edge) 45%);
+    color: var(--wiki-text);
+}
+
+.web1 h1, .web1 h2, .web1 h3, .web1 h4 { text-align: center; }
+.web1 h2, .web1 h3, .web1 h4, .web1 p, .web1 ol, .web1 ul { margin: 15px auto; max-width: 1200px; }
+.web1 p, .web1 ol, .web1 ul { text-align: justify; line-height: 1.8; }
+
+.web1 #caption1 { text-align:center; width:85%; margin:1.5rem auto; font-size:2.2rem; color:var(--wiki-text); padding:15px 20px; border-radius:8px; background:linear-gradient(90deg, rgba(80,20,150,0.18) 0%, rgba(150,50,200,0.12) 40%, rgba(25,25,30,0.12) 100%); -webkit-text-stroke:0.8px rgba(0,0,0,0.8); text-shadow: 0 0 6px rgba(170,100,255,0.9); }
+
+.web1 #banner1, .web1 #img1 { display:block; margin:1.5rem auto; max-width:100%; height:auto; border-radius:8px; box-shadow:0 8px 20px rgba(0,0,0,0.7); }
+
+.web1 .center-iframe, .web1 .small-iframe { display:block; width:100%; aspect-ratio:16/9; border:0; margin:1.5rem auto; border-radius:6px; box-shadow:0 6px 18px rgba(0,0,0,0.7); }
+.web1 .center-iframe { max-width:900px; }
+.web1 .small-iframe { max-width:600px; }
+
+.web1 #tabla2 { width:100%; border-collapse:separate; border-spacing: 20px; margin: 2rem 0; }
+.web1 #tabla2 tr { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+.web1 #tabla2 td { flex: 1 1 calc(50% - 10px); min-width: 300px; display: flex; flex-direction: column; align-items: center; }
+
+.web1 #tabla1 { width:95%; max-width:var(--max-width); margin:1.5rem auto; border-collapse:collapse; }
+.web1 #tabla1 th, .web1 #tabla1 td { border:1px solid rgba(255,255,255,0.08); padding:12px; text-align:center; background:rgba(255,255,255,0.02); border-radius:6px; }
+
+.web1 .boton1, .web1 .boton2 { display:inline-block; width:100px; height:100px; border-radius:50%; background-size:cover; background-position:center; text-indent:-9999px; box-shadow:0 6px 14px rgba(0,0,0,0.6); border:2px solid rgba(255,255,255,0.04); margin: 10px 15px; transition: 0.3s; }
+.web1 .boton1:hover, .web1 .boton2:hover { transform: scale(1.1); box-shadow: 0 8px 20px rgba(170,100,255,0.5); }
+.web1 .boton1 { background-image: url(https://tse4.mm.bing.net/th/id/OIP.9Mfz9bvXqe1pz2lhxkW_dQHaGw?pid=Api&P=0&h=180); }
+.web1 .boton2 { background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/1200px-Wikipedia-logo-v2.svg.png); }
+
+.web1 ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; list-style: none; }
+.web1 ul li { display: flex; justify-content: center; align-items: center; text-align: center; }
+
+.web1 #bandasonora { text-align: center; margin: 2rem auto; }
+.web1 #bandasonora h2 { text-align: center; margin-bottom: 20px; }
+.web1 #bandasonora audio { width: 100%; max-width: 600px; border-radius: 8px; box-shadow: 0 0 10px 7px rgba(170,100,255,0.6); display: block; margin: 0 auto; }
+
+@media (max-width: 800px) {
+    #caption1, .caption1 { width: 95%; font-size: 1.6rem; }
+    #divpadre, #contenedorpadre { grid-template-columns: 1fr; }
+    .item, #hover1, #hover2, #hover3 { width: 90%; }
+    .web1 #tabla2 td { flex: 1 1 100%; }
+}
+
+/* ESTILOS DEL CARRUSEL */
+.carrusel-wrapper {
+    width: 100%;
+    padding: 0;
+    margin: 30px 0;
+    background: transparent;
+    position: relative;
+}
+
+.carrusel-wrapper::before {
+    display: none;
+}
+
+.carrusel-wrapper::after {
+    display: none;
+}
+
+.carrusel-container {
+    position: relative;
+    width: 100vw;
+    height: 60vh;
+    margin-left: calc(-50vw + 50%);
+    overflow: hidden;
+    border-radius: 0;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.8), inset 0 0 40px rgba(0, 0, 0, 0.5);
+    border: 3px solid #000;
+}
+
+.carrusel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.carrusel-item {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.carrusel-item.active {
+    opacity: 1;
+    animation: fadeInScale 1s ease-in-out;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(1.02);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.carrusel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.carrusel-btn {
+    display: none !important;
+}
+
+.carrusel-indicadores {
+    display: none !important;
+}
+
+.indicador {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.4s ease;
+    border: 2px solid var(--color-acento);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+.indicador.active {
+    background-color: var(--color-acento);
+    transform: scale(1.4);
+    box-shadow: 0 0 25px rgba(0, 212, 255, 0.9);
+}
+
+
+.indicador:hover {
+    background-color: var(--color-acento);
+    transform: scale(1.4);
+    box-shadow: 0 0 25px rgba(0, 212, 255, 0.9);
+}
+
+@media (max-width: 768px) {
+    .carrusel-wrapper {
+        padding: 25px 15px;
+        margin: 20px 0;
+    }
+    
+    .carrusel-container {
+        max-width: 95%;
+        margin: 0 auto;
+        border-radius: 12px;
+    }
+    
+    .carrusel-btn {
+        padding: 10px 14px;
+        font-size: 20px;
+    }
+    
+    .carrusel-btn.prev {
+        left: 12px;
+    }
+    
+    .carrusel-btn.next {
+        right: 12px;
+    }
+    
+    .carrusel-indicadores {
+        bottom: 18px;
+        gap: 10px;
+        padding: 8px 16px;
+    }
+    
+    .indicador {
+        width: 11px;
+        height: 11px;
+    }
+}
+/* (no duplicate #img-header here) */
