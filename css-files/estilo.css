@@ -58,7 +58,7 @@ header {
 
 /* Header específico para la página principal (index.html) */
 #img-header {
-    background: url(../Recursos/header-header.png);
+    background: url(../Recursos/header-header.webp);
 }
 
 #img-inicio {
@@ -68,7 +68,7 @@ header {
     width: 80px; 
     height: 80px;
     border-radius: 100%;
-    background: url(../Recursos/inicio1.jpg) center/cover no-repeat;
+    background: url(../Recursos/inicio1.webp) center/cover no-repeat;
     transition: all 0.2s ease;
     z-index: 10;
     contain: layout style paint;
@@ -84,8 +84,8 @@ header {
     box-shadow: 0 2px 6px rgba(0,0,0,0.3); 
 }
 /* ocultar imágenes internas en los enlaces de cabecera para que se muestre el background del <a> */
-#img-inicio img, #style-inicio { width: 100%; height: 100%; border-radius: 100%; opacity: 0; display: block; }
-#boton1 img, #boton1a img, #boton2 img, #boton2a img, #boton3 img, #boton3a img { width: 100%; height: 100%; opacity: 0; display: block; border-radius: 12px; }
+#img-inicio img, #style-inicio { width: 100%; height: 100%; border-radius: 100%; opacity: 1; display: block; }
+#boton1 img, #boton1a img, #boton2 img, #boton2a img, #boton3 img, #boton3a img { width: 100%; height: 100%; opacity: 1; display: block; border-radius: 12px; }
 
 /* 1. Estilos generales y posición horizontal común */
 #boton1, #boton1a, #boton2, #boton2a, #boton3, #boton3a {
@@ -108,14 +108,14 @@ header {
 #boton3, #boton3a { top: 120px; }
 
 /* 3. Imágenes por defecto */
-#boton1, #boton1a { background-image: url(https://assets.murphysmultiverse.com/uploads/2024/10/marvel-logo-design-history-and-evolution-kreafolk_50f7a4b8-dc53-495d-89bc-84c168382b61.jpg); }
-#boton2, #boton2a { background-image: url(https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/81a4e680815973.5cec6bcf6aa1a.jpg); }
-#boton3, #boton3a { background-image: url(https://i.pinimg.com/736x/dd/65/1e/dd651e59f8437c2f1e5f7ab35d813f75.jpg); }
+#boton1, #boton1a { background-image: url(https://assets.murphysmultiverse.com/uploads/2024/10/marvel-logo-design-history-and-evolution-kreafolk_50f7a4b8-dc53-495d-89bc-84c168382b61.webp); }
+#boton2, #boton2a { background-image: url(https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/81a4e680815973.5cec6bcf6aa1a.webp); }
+#boton3, #boton3a { background-image: url(https://i.pinimg.com/736x/dd/65/1e/dd651e59f8437c2f1e5f7ab35d813f75.webp); }
 
 /* 4. Imágenes al pasar el ratón (Hover) */
-#boton1:hover, #boton1a:hover { background-image: url(../Recursos/marvel1.jpg); }
+#boton1:hover, #boton1a:hover { background-image: url(../Recursos/marvel1.webp); }
 #boton2:hover, #boton2a:hover { background-image: url(../Recursos/cyberpunk.webp); }
-#boton3:hover, #boton3a:hover { background-image: url(../Recursos/wednesday.jpg); }
+#boton3:hover, #boton3a:hover { background-image: url(../Recursos/wednesday.webp); }
 
 /* 5. Efectos visuales al pasar el ratón */
 #boton1:hover, #boton1a:hover,
@@ -157,25 +157,46 @@ header {
     outline-offset: 2px;
 }
 
-.collage { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; min-height: 260px; }
+.collage {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* distribute tiles across the row */
+    gap: 24px;
+    min-height: 260px;
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 16px;
+    align-items: center;
+    box-sizing: border-box;
+}
 #hover1, #hover2, #hover3 {
-    display: block;
-    width: 400px; height: 250px;
+    display: flex;
+    flex: 1 1 calc(33.333% - 32px); /* let each tile grow to fill row */
+    min-width: 220px;
+    max-width: 420px;
+    height: auto;
+    aspect-ratio: 400/250;
+    justify-content: center;
+    align-items: center;
     background-size: cover;
-    background-position: center;
+    background-position: center center;
     border-radius: 12px;
     transition: all 0.2s ease;
-    aspect-ratio: 400/250;
+    margin: 0;
+    align-self: center;
+    justify-self: center;
+    box-sizing: border-box;
 }
 /* Use local Recursos images for hover tiles on the index page */
 #hover1 { background-image: url(../Recursos/cyberpunk.webp); }
-#hover1:hover { background-image: url(../Recursos/female-v-badass-3840x2160-20153.jpg); }
+#hover1:hover { background-image: url(../Recursos/female-v-badass-3840x2160-20153.webp); }
 
-#hover2 { background-image: url(../Recursos/marvel1.jpg); background-size: 450px; }
-#hover2:hover { background-image: url(../Recursos/marvel-logo-dark-3840x2160-22111.jpg); background-size: 500px; }
+#hover2 { background-image: url(../Recursos/marvel1.webp); background-size: 450px; }
+#hover2:hover { background-image: url(../Recursos/marvel-logo-dark-3840x2160-22111.webp); background-size: 500px; }
 
-#hover3 { background-image: url(../Recursos/wednesday.jpg); }
-#hover3:hover { background-image: url(../Recursos/jenna-ortega-thing-3840x2160-23922.jpg); }
+#hover3 { background-image: url(../Recursos/wednesday.webp); }
+#hover3:hover { background-image: url(../Recursos/jenna-ortega-thing-3840x2160-23922.webp); }
 
 #hover1:hover, #hover2:hover, #hover3:hover { transform: scale(1.1); box-shadow: 0 0 5px 5px white; }
 #hover1:focus, #hover2:focus, #hover3:focus { outline: 3px solid white; outline-offset: 2px; }
@@ -295,19 +316,19 @@ header {
 
 body:has(#ver2) { background-color: rgb(0,78,78) !important; }
 /* Cyberpunk header: use project banner for a stronger visual */
-body:has(#ver2) header { background: url(../Recursos/female-v-badass-3840x2160-20153.jpg) center/cover no-repeat; }
-body:has(#ver2) #bannerprincipal img { content: url(../Recursos/bannercyberpunk.jpg); } 
+body:has(#ver2) header { background: url(../Recursos/female-v-badass-3840x2160-20153.webp) center/cover no-repeat; }
+body:has(#ver2) #bannerprincipal img { content: url(../Recursos/bannercyberpunk.webp); } 
 body:has(#ver2) .figcenter { border-color: rgb(0,158,179); background: linear-gradient(to right, rgb(0,141,110), rgb(0,48,41)); }
 
 body:has(#ver1) { background-color: rgb(26,0,0) !important; }
 /* use existing banner images from Recursos as header backgrounds */
-body:has(#ver1) header { background: url(../Recursos/header-marvel.png) center/cover no-repeat; }
-body:has(#ver1) #bannerprincipal img { content: url(../Recursos/marvel-superheroes-3840x2160-24445.jpg); } 
+body:has(#ver1) header { background: url(../Recursos/header-marvel.webp) center/cover no-repeat; }
+body:has(#ver1) #bannerprincipal img { content: url(../Recursos/marvel-superheroes-3840x2160-24445.webp); } 
 body:has(#ver1) .figcenter { border-color: rgb(109,0,0); background: linear-gradient(to right, rgb(134,0,0), rgb(99,64,0)); }
 
 body:has(#ver3) { background-color: #2a1b55 !important; }
-body:has(#ver3) header { background: url(../Recursos/header-miercoles.jpg) center/cover no-repeat; }
-body:has(#ver3) #bannerprincipal img { content: url(../Recursos/jenna-ortega-as-3840x2160-9302.jpg); } 
+body:has(#ver3) header { background: url(../Recursos/header-miercoles.webp) center/cover no-repeat; }
+body:has(#ver3) #bannerprincipal img { content: url(../Recursos/jenna-ortega-as-3840x2160-9302.webp); } 
 body:has(#ver3) .figcenter { border-color: rgb(45,0,128); background: linear-gradient(to right, rgb(104,0,202), rgb(77,0,107)); }
 
 .web1 {
@@ -345,7 +366,7 @@ body:has(#ver3) .figcenter { border-color: rgb(45,0,128); background: linear-gra
 .web1 .boton1, .web1 .boton2 { display:inline-block; width:100px; height:100px; border-radius:50%; background-size:cover; background-position:center; text-indent:-9999px; box-shadow:0 6px 14px rgba(0,0,0,0.6); border:2px solid rgba(255,255,255,0.04); margin: 10px 15px; transition: 0.3s; }
 .web1 .boton1:hover, .web1 .boton2:hover { transform: scale(1.1); box-shadow: 0 8px 20px rgba(170,100,255,0.5); }
 .web1 .boton1 { background-image: url(https://tse4.mm.bing.net/th/id/OIP.9Mfz9bvXqe1pz2lhxkW_dQHaGw?pid=Api&P=0&h=180); }
-.web1 .boton2 { background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/1200px-Wikipedia-logo-v2.svg.png); }
+.web1 .boton2 { background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/1200px-Wikipedia-logo-v2.svg.webp); }
 
 .web1 ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; list-style: none; }
 .web1 ul li { display: flex; justify-content: center; align-items: center; text-align: center; }
